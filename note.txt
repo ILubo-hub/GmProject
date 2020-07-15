@@ -1,0 +1,3 @@
+install -g serve
+Write serve to run
+Remember to click anywhere after giving permissions on chrome
