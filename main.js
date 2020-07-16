@@ -152,6 +152,16 @@ let pitch;
 let audioContext;
 let mic;
 let freq = 0;
+let threshold= 1;
+let notes = [
+  {note: 'E', Freq: 82.40},
+  {note: 'A', Freq: 110},
+  {note: 'D', Freq: 146.83},
+  {note: 'G', Freq: 196},
+  {note: 'B', Freq: 246.94},
+  {note: 'E3', Freq: 329.63}
+];
+
 
 function setup(){
   createCanvas(400,400);
@@ -197,23 +207,28 @@ function draw(){
   background(0);
   textAlign(CENTER, CENTER);
   fill(255);
-  textSize(64);
-  text(freq.toFixed(2), width/2, height-100);
+  text(freq.toFixed(2), width/2, height-150);
+  
 
-  let diff = freq - 440;
+  let closestNote = -1;
+  let recordDiff = Infinity;
+  for (let i =0; i<notes.length; i++){
+    let diff = freq - notes[i].Freq;
+    if(abs(diff) < recordDiff){
+      closestNote = notes[i];
+      recordDiff = diff;
+    }
+  }
+  text(closestNote.note, width/2, height-50);
 
-
-  // let amt = map(abs(diff), 0, 100, 0, 1);
-  // let r = color(255, 0, 0);
-  // let g = color(0, 255, 0);
-  // let col = lerpColor(g, r, amt);
-
+  let diff = recordDiff;
+  let note = notes[closestNote]
   let alpha = map(abs(diff), 0, 100, 255, 0);
   rectMode(CENTER);
   fill(255, alpha);
   stroke(255);
   strokeWeight(1);
-  if(abs(diff)< 1){
+  if(abs(diff)< threshold){
     fill(0, 255, 0);
   }
   rect(200, 100, 200, 50);
@@ -224,7 +239,7 @@ function draw(){
 
   noStroke();
   fill(255,0,0);
-  if(abs(diff)<1){
+  if(abs(diff)<threshold){
     fill(0,255,0);
   }
   
