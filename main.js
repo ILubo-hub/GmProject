@@ -17,8 +17,6 @@ let notes = [
 
 function setup(){
   createCanvas(700,700);
-  let radio = createRadio();
-  radio.option('E');
   try{
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     audioContext = getAudioContext();
@@ -56,15 +54,11 @@ function modelLoaded(){
   pitch.getPitch(gotPitch);
 }
 
-
-let btn = document.getElementById('btn');
-btn.addEventListener("click", draw2());
-
 function draw(){
   background(0);
 
   textAlign(CENTER, CENTER);
-  fill(255);
+  fill(255,255,0);
     text(freq.toFixed(2), width/2, height-150);
     let closestNote = -1;
     let recordDiff = Infinity;
@@ -103,39 +97,10 @@ function draw(){
     rect(200 + diff/10, 100, 10, 75);
 }
 
-function drawPlus(){
-  let val1 = document.getElementById("rd1").checked;
-  let val2 = document.getElementById("rd2").checked;
-
-  if(val1){
-    let note = document.getElementById("rd1").value;
-    background(0);
-    textAlign(CENTER, CENTER);
-    fill(255);
-
-    text(freq.toFixed(2), width/2, height-150);
-    text(note, width/2, height-50);
-
-    rectMode(CENTER);
-    fill(255, alpha);
-    stroke(255);
-    strokeWeight(1);
-    let diff1 = freq - notes[i].Freq;
-    if(abs(diff1)< threshold){
-      fill(0, 255, 0);
-    }
-    rect(200, 100, 200, 50);
-  
-    stroke(255);
-    strokeWeight(4);
-    line(200,0,200,200);
-  
-    noStroke();
-    fill(255,0,0);
-    if(abs(diff)<threshold){
-      fill(0,255,0);
-    }
-    
-    rect(200 + diff/10, 100, 10, 75);
-  }
+function draw2(){
+  createCanvas(400,400);
+  text(freq.toFixed(2), width/2, height-100);
+  let diff = freq - 440;
+  fill(255);
+  rect(200, 100, diff, 50);
 }
