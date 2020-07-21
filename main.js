@@ -5,6 +5,8 @@ let audioContext;
 let mic;
 let freq = 0;
 let threshold= 1;
+let canvas;
+let ctx;
 let notes = [
   {note: 'E', Freq: 82.40},
   {note: 'A', Freq: 110},
@@ -16,7 +18,7 @@ let notes = [
 
 
 function setup(){
-  createCanvas(700,700);
+  canvas = document.getElementById("canvas");
   try{
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     audioContext = getAudioContext();
@@ -56,10 +58,10 @@ function modelLoaded(){
 
 function draw(){
   background(0);
-
+  let canvas = document.getElementById("canvas");
   textAlign(CENTER, CENTER);
   fill(255,255,0);
-    text(freq.toFixed(2), width/2, height-150);
+  text(freq.toFixed(2), width/2, height-150);
     let closestNote = -1;
     let recordDiff = Infinity;
     for (let i =0; i<notes.length; i++){

@@ -2,16 +2,28 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="estilos.css">
         <title>Afinador</title>
     </head>
     <body>
+        <div class="tit1">
+            <p>Manual Tunning</p>
+        </div>
+        <div class="cnt1">
+            <div>
+                <input id="rd1" class="rdC" type="radio" style="font-family: 'Ubuntu', sans-serif;" name="note" value="E"> Nota E<br/>
+                <input id="rd1" class="rdC" type="radio" style="font-family: 'Ubuntu', sans-serif;" name="note" value="E"> Note A<br/>
+            </div>
+        </div>
         <div>
-            <input id="rd1" type="radio" name="note" value="E"> Nota E<br/>
-            <input id="rd1" type="radio" name="note" value="E"> Note A<br/>
-            
-            <button id="btn">Get tuned</button>
+           <canvas id="canvas"></canvas> 
+        </div>
+        <div>
+            <div>
+                <button id="btn">Get tuned</button>
+            </div>
         </div>
     </body>
 </html>
