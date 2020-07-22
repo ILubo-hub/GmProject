@@ -57,8 +57,11 @@ function modelLoaded(){
 }
 
 function draw(){
+  var cnv = createCanvas(500,500);
+  let x= (windowWidth - width) / 2;
+  let y = (windowHeight - height);
+  cnv.position(x,y);
   background(0);
-  let canvas = document.getElementById("canvas");
   textAlign(CENTER, CENTER);
   fill(255,255,0);
   text(freq.toFixed(2), width/2, height-150);
@@ -97,12 +100,4 @@ function draw(){
       fill(0,255,0);
     }
     rect(200 + diff/10, 100, 10, 75);
-}
-
-function draw2(){
-  createCanvas(400,400);
-  text(freq.toFixed(2), width/2, height-100);
-  let diff = freq - 440;
-  fill(255);
-  rect(200, 100, diff, 50);
 }
