@@ -57,13 +57,14 @@ function modelLoaded(){
 }
 
 function draw(){
+  
   var cnv = createCanvas(500,500);
   let x= (windowWidth - width) / 2;
   let y = (windowHeight - height);
   cnv.position(x,y);
   background(0);
   textAlign(CENTER, CENTER);
-  fill(255,255,0);
+  fill(255,255,255);
   text(freq.toFixed(2), width/2, height-150);
     let closestNote = -1;
     let recordDiff = Infinity;
@@ -78,26 +79,26 @@ function draw(){
     text("You are tunning the note "+ closestNote.note + " Try to get it as close as possible to " + closestNote.Freq, width/2, height-100);
   
     let diff = recordDiff;
-    let note = notes[closestNote]
-    let alpha = map(abs(diff), 0, 100, 255, 0);
+    let note = notes[closestNote];
+    let alpha = map(abs(diff), 0, 100, 0, 0);
   
     rectMode(CENTER);
-    fill(255, alpha);
+    fill(0, alpha);
     stroke(255);
     strokeWeight(1);
     if(abs(diff)< threshold){
       fill(0, 255, 0);
     }
-    rect(200, 100, 200, 50);
+    rect(250, 100, 200, 50);
   
     stroke(255);
-    strokeWeight(4);
-    line(200,0,200,200);
+    strokeWeight(1);
+    line(250,0,250,250);
   
-    noStroke();
+    stroke(255);
     fill(255,0,0);
     if(abs(diff)<threshold){
       fill(0,255,0);
     }
-    rect(200 + diff/10, 100, 10, 75);
+    rect(250 + diff/2, 100, 10, 75);
 }
